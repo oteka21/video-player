@@ -1,4 +1,4 @@
-# Hablando de **this** en javscript
+# Hablando de **this** en javascript
 
 ##  Ques es **this** en javascript?
 > this se refiere a un objeto, ese objeto es el que esta ejecutando un fragmento de código

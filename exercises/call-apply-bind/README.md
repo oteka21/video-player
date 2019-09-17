@@ -46,7 +46,7 @@ caminar.apply(persona, argumentos)
 ```
 Un truco para no cunfundir call con apply en su funcionamiento es:
 
-**C**all - comma
+**C**all - comma  
 **A**pply - Array 
 
 # Usando bind
