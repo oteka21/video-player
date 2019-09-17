@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>learn about this</title>
+</head>
+<body>
+
+    <h2>this se refiere a un objeto, ese objeto es el que esta ejecutando un fragmento de código</h2>
+    <script>
+        // this en el scope global es window
+        console.log(`this es ${this}`)
+
+        //this en el scope de una funcion 
+        function whoIsthis(){
+            return this
+        }
+
+        console.log(`en whoIsthis, this es ${whoIsthis()}`)
+
+        const person1 ={
+            name: "a name",
+            whoIsThis: whoIsthis
+        }
+
+        // pero nos damos cuenta que si le pasamos la funcion original whoIsthis a person1 el valor de this será el de person1
+
+        console.log(`whoIsthis en un objeto:`, person1.whoIsThis())
+        //this en modo estricto
+
+        function whoIsthisStrict(){
+            'use strict'
+            return this
+        }
+
+        console.log(`en whoIsthis en modo estricto, this es ${whoIsthisStrict()}`)
+
+        // this en el contexto de un objeto
+
+        const person = {
+            name: 'leonardo',
+            saludar: function () {
+                console.log(`Hola soy ${this.name}`)
+            }
+        }
+
+        person.saludar()
+        const accion = person.saludar
+        accion()
+
+        //this en el contexto de una plase
+
+        function Person(name){
+            this.name = name 
+        }
+
+        Person.prototype.saludar = function(){
+            console.log(`Hola soy ${this.name}`)
+        }
+        
+
+        const leo = new Person('leonardo')
+
+        leo.saludar()
+    </script>
+</body>
+</html>
