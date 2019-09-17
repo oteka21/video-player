@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call,apply,bind</title>
+</head>
+<body>
+    <script>
+
+    //establecer this usando call
+    let persona ={
+        name: 'leonardo',
+        lastname: 'oteca'
+    }
+    function saludar(){
+        console.log(`Hola soy ${this.name} y me apellido ${this.lastname}`)
+    }
+
+    saludar.call(persona)
+
+    //pasando argumentos
+
+    function caminar(metros,direccion){
+        console.log(`${this.name} camina  ${metros} metros hacia ${direccion}`)
+    }
+
+    caminar.call(persona, 34, 'norte')
+
+    //usando apply
+
+    const argumentos = [500, 'sur']
+    caminar.apply(persona, argumentos)
+
+    //usando bind
+
+    const manuel ={
+        name: 'manuel',
+        lastname: 'oteca'
+    }
+
+    const manuelSaluda = saludar.bind(manuel)
+
+    manuelSaluda()
+
+    //pasando argumentos
+
+    const manuelCamina = caminar.bind(manuel)
+
+    manuelCamina(400,'oeste')
+
+    //pasrlos en el bind
+
+    const manuelCaminaWithArgs = caminar.bind(manuel, 500)
+
+    manuelCaminaWithArgs('noroeste')
+
+
+    </script>
+</body>
+</html>
