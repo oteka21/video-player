@@ -2,7 +2,9 @@ function AutoPlay(){
 }
 
 AutoPlay.prototype.run = function (player){
-    player.mute()
+    if (!player.media.muted){
+        player.muted = true
+    }
     player.play()
 }
 
