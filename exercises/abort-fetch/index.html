@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Abort fetch</title>
+</head>
+<body>
+    <img src=""" alt="" id="huge-image" height="400" width='300'>
+
+    <button id='load'>Load a Huge Image</button>
+    <button id='stop'>Stop Fetching</button>
+    <script>
+        const url = 'https://images.pexels.com/photos/2065837/pexels-photo-2065837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        const img = document.querySelector('#huge-image')
+        const loadButton = document.querySelector('#load')
+        const stopButton = document.querySelector('#stop')
+        let controller = null
+
+        function startLoading(){
+            loadButton.disabled = true
+            loadButton.innerText = "Loading..."
+            stopButton.Disabled = false
+        }
+
+        function stopLoading(){
+            loadButton.disabled = false
+            loadButton.innerText = "Load a Huge Image"
+            stopButton.Disabled = true
+        }
+
+
+        loadButton.onclick = async function(){
+            startLoading();
+            controller = new AbortController()
+            const response = await fetch(url, {signal: controller.signal })
+            const blob = await response.blob()
+            const imgUrl = URL.createObjectURL(blob)
+            img.src = imgUrl
+            stopLoading();
+        }
+
+
+        stopButton.onclick = function(){
+            controller.abort()
+            stopLoading();
+        }
+    </script>
+</body>
+</html>
