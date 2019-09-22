@@ -21,7 +21,8 @@ function MediaPlayer(config){
             // console.log(plugin)
             plugin.run(player);
         });
-        }
+    }
+
     MediaPlayer.prototype.mute = function(){
     this.media.muted = true
     }
